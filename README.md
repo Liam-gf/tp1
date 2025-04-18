@@ -8,6 +8,8 @@
 
 # Compte-rendu TP1 Introduction GIT
 
+
+
 ## 1. Configuration de GIT
 
 
@@ -42,6 +44,7 @@ Pour vérifier si le nom et l'e-mail rentrer est correct, il faut utiliser les c
 
 ## 2. Création d'un dépôt git
 
+
 Pour crée un dépôt git il faut faire la commande :  
 
 *git init*  
@@ -64,6 +67,7 @@ La commande *git status* doit afficher :
 
 
 ## 3. Création d'un fichier texte README.md
+
 
 Un fichier README.md est un fichier au format markdown.
 
@@ -138,4 +142,93 @@ Le passage entre ses 3 états se fait par 3 actions :
 
 - Sélection (stage) : Sélectionne le fichier *git add*.
 - Validation (commit) : Crée le commit et l'envoie vers le dépôt avec *git commit*.
-- Récupération (checkout) : Récupère un instantané (snapchot) depuis le dépôt vers la copie de travail.
+- Récupération (checkout) : Récupère un instantané (snapchot) du le dépôt vers la copie de travail.
+
+
+
+## 4. Gestion de version d'un programme Java
+
+
+Pour crée un fichier java vide on utilise la commande :
+
+**Sur Linux :** *touch `Nom du programme`.java*
+
+**Sur Windows :** *New-Item -Path `Nom du programme`.java -ItemType File*
+
+On édite le fichier avec du code.
+
+Ensuite on fait un *git add src\Cryptomonnaie.java* afin de sélectionner le fichier.
+Après on fait la commande *git commit -m "Première version du fichier Cyptomonnaie.java"*.
+
+La commande *git log* affiche ensuite :
+
+	commit b3220b1690a4aa24187b038261dc445d5ce0e32a (HEAD -> master)
+	Author: Liam GF <tiger76760@gmail.com>
+	Date:   Thu Apr 17 16:31:40 2025 +0200
+
+		Première version du fichier Cyptomonnaie.java
+
+	commit 2ed6106dd9c398dc05958f20bb22819c88d0faad
+	Author: Liam GF <tiger76760@gmail.com>
+	Date:   Thu Apr 17 16:02:16 2025 +0200
+
+		Ajout du compte rendu des 3 premières étapes du cour
+
+	commit fe7d253bbe6242f8709268d386ba05dbccdeb64d
+	Author: Liam GF <tiger76760@gmail.com>
+	Date:   Wed Apr 16 21:23:03 2025 +0200
+
+		Ajoute du fichier README.md
+
+
+### 4.1 Creation du fichier .gitignore
+
+Lorsqu'on compile un fichier .java cela crée un .class. Il est afficher quand on fait *git status* :
+
+	On branch master
+	Untracked files:
+	  (use "git add <file>..." to include in what will be committed)
+		    Cryptomonnaie.class
+	
+	nothing added to commit but untracked files present (use "git add" to track)
+
+Les fichiers .class ne sont pas à enregistrées dans le dépôt git. L'apparition de fichiers .class 
+lorsqu'on fait la commande *git status* est ennuyeuse. Il va donc falloir les ignorer grâce à un 
+fichier nommé *.gitignore*. Pour crée ce fichier on fait la commande :
+
+**Sur Linux :** *touch .gitignore*
+
+**Sur Windows :** *New-Item -Path .gitignore -ItemType File*
+
+Dans ce fichier on met : 
+
+**.class*
+
+On ajoute ce fichier au dépôt git : 
+
+*git add .gitignore*
+*git commit -m ".gitignore ajouté"*
+
+Maintenant lorsqu'on fait *git status* on ne voit plus le fichier .class.
+Les fichiers .class ont été ignorer lors du *git status*.
+
+On peut compléter le fichier *gitignore* avec ceci :
+
+	# Compiled class file
+	*.class
+	
+	# Package Files 
+	*.jar
+	*.war
+	*.nar
+	*.ear
+	*.zip
+	*.tar.gz
+	*.rar
+
+On sélectionne et commit ce fichier : 
+
+*git add .gitignore*
+*git commit -m ".gitignore ajouté"*
+
+Ces ajouts permettent de ne pas afficher les fichiers qui ont ces extensions.
